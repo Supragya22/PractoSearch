@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Details</title>
+  <link rel="stylesheet" href="styles/doctor.css">
+</head>
+<body>
+<div class="container">
+  <h2>Doctor Details</h2>
+  <input type="number" id="doctorId" placeholder="Enter Doctor ID">
+  <button onclick="fetchDoctor()">Get Doctor Details</button>
+  <div id="loading" class="loading">Loading...</div>
+  <div id="doctorDetails"></div>
+</div>
+
+<script src="scripts/doctor.js"></script>
+</body>
+</html>

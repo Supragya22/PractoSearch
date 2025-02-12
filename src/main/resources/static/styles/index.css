@@ -6,11 +6,12 @@ body {
 
 .container {
     width: 50%;
-    margin: 50px auto;
+    margin: auto;
     padding: 20px;
     background: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+    top:-50px;
 }
 
 input {
@@ -52,6 +53,20 @@ button:hover {
     width: 40px;
     height: 40px;
     animation: spin 1s linear infinite;
+}
+
+#logo
+{
+    height: 100px;
+    width: 200px;
+}
+
+#practo
+{
+    display: flex;
+    align-item: center;
+    padding: 20px 30px;
+    width: 20%;
 }
 
 @keyframes spin {

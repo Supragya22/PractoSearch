@@ -4,15 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DoctorDTO {
+public class PracticeDTO {
     private String name;
-    private int experience;
-    private String qualifications;
-    private List<String> specialities;
-    private List<String> practices;
+    private String address;
+    private String state;
+    private String city;
+    private String website;
 }
