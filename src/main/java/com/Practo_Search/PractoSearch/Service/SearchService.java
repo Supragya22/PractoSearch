@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SearchService {
@@ -31,19 +32,24 @@ public class SearchService {
         // Search Doctors by name or speciality
         List<Doctor> doctors = doctorRepository.searchByDoctorNameOrSpeciality(keyword);
         for (Doctor doctor : doctors) {
-            results.add(new SearchResultDTO("Doctor", doctor.getId(), doctor.getName(), doctor.getExperience() + " years experience"));
+            List<String> specialities = doctor.getSpecialities()
+                    .stream()
+                    .map(Speciality::getName) // Extract speciality names
+                    .toList();
+
+            results.add(new SearchResultDTO("Doctor", doctor.getId(), doctor.getName(), doctor.getExperience() + " years experience", specialities));
         }
 
         // Search Specialities
-        List<Speciality> specialities = specialityRepository.searchBySpecialityName(keyword);
-        for (Speciality speciality : specialities) {
-            results.add(new SearchResultDTO("Speciality", speciality.getId(), speciality.getName(), "Medical Speciality"));
-        }
+//        List<Speciality> specialities = specialityRepository.searchBySpecialityName(keyword);
+//        for (Speciality speciality : specialities) {
+//            results.add(new SearchResultDTO("Speciality", speciality.getId(), speciality.getName(), "Medical Speciality"));
+//        }
 
         // Search Practices by name, city, or speciality
         List<Practice> practices = practiceRepository.searchByPracticeNameOrCityOrStateOrSpeciality(keyword);
         for (Practice practice : practices) {
-            results.add(new SearchResultDTO("Practice", practice.getId(), practice.getName(), practice.getCity() + ", " + practice.getState()));
+            results.add(new SearchResultDTO("Practice", practice.getId(), practice.getName(), practice.getCity() + ", " + practice.getState(), null));
         }
 
         return results;

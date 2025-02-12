@@ -3,6 +3,7 @@ package com.Practo_Search.PractoSearch.Controller;
 import com.Practo_Search.PractoSearch.DTO.SearchResultDTO;
 import com.Practo_Search.PractoSearch.Service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +17,9 @@ public class SearchController {
     private SearchService searchService;
 
     @GetMapping
-    public List<SearchResultDTO> search(@RequestParam String keyword) {
-        return searchService.universalSearch(keyword);
+    public ResponseEntity<List<SearchResultDTO>> search(@RequestParam String keyword) {
+        List<SearchResultDTO> results = searchService.universalSearch(keyword);
+        return ResponseEntity.ok(results);
     }
 }
 
