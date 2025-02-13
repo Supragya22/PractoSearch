@@ -7,12 +7,14 @@
   <link rel="stylesheet" href="styles/practice.css">
 </head>
 <body>
-<div class="container">
-  <h2>Practice Details</h2>
-  <input type="number" id="practiceId" placeholder="Enter Practice ID">
-  <button onclick="fetchPractice()">Get Practice Details</button>
-  <div id="loading" class="loading">Loading...</div>
-  <div id="practiceDetails"></div>
+<div id="practiceDetails">
+  <h2>Doctor Details</h2>
+  <p><strong>Name:</strong> <span id="practiceName"></span></p>
+  <p><strong>Address</strong> <span id="practiceAddress"></span> years</p>
+  <p><strong>City:</strong> <span id="practiceCity"></span></p>
+  <p><strong>State:</strong> <span id="practiceState"></span></p>
+  <p><strong>Website:</strong> <span id="practiceWebsite"></span></p>
+  <button id="backToSearch">Back to Search</button>
 </div>
 
 <script src="scripts/practice.js"></script>

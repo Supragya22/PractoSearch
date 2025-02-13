@@ -7,12 +7,14 @@
   <link rel="stylesheet" href="styles/doctor.css">
 </head>
 <body>
-<div class="container">
+<div id="doctorDetails">
   <h2>Doctor Details</h2>
-  <input type="number" id="doctorId" placeholder="Enter Doctor ID">
-  <button onclick="fetchDoctor()">Get Doctor Details</button>
-  <div id="loading" class="loading">Loading...</div>
-  <div id="doctorDetails"></div>
+  <p><strong>Name:</strong> <span id="doctorName"></span></p>
+  <p><strong>Experience:</strong> <span id="doctorExperience"></span> years</p>
+  <p><strong>Qualifications:</strong> <span id="doctorQualifications"></span></p>
+  <p><strong>Specialities:</strong> <span id="doctorSpecialities"></span></p>
+  <p><strong><span id="doctorPractices"></span></strong></p>
+  <button id="backToSearch">Back to Search</button>
 </div>
 
 <script src="scripts/doctor.js"></script>
