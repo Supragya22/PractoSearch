@@ -17,6 +17,7 @@ function performSearch() {
         return;
     }
 
+
     // Clear previous results and show loading indicator
     resultsContainer.innerHTML = "";
     loadingSpinner.style.display = "block";
@@ -35,32 +36,6 @@ function performSearch() {
             loadingSpinner.style.display = "none";
         });
 }
-
-//function displayResults(filteredResults) {
-//    let resultsContainer = document.getElementById("resultsContainer");
-//    resultsContainer.innerHTML = ""; // Clear previous results
-//
-//    // Filter only Doctors and Practices (ignore Specialities)
-//    //let filteredResults = results.filter(result => result.type === "Doctor" || result.type === "Practice");
-//
-//    if (filteredResults.length === 0) {
-//        resultsContainer.innerHTML = "<p>No results found.</p>";
-//        return;
-//    }
-//
-//    filteredResults.forEach(result => {
-//        let div = document.createElement("div");
-//        div.classList.add("result-item");
-//
-//        let resultLink = document.createElement("a");
-//        resultLink.href = result.type === "Doctor" ? `doctor.html?id=${result.id}` : `practice.html?id=${result.id}`;
-//        resultLink.innerHTML = `<strong>${result.name}</strong>`;
-//
-//        div.appendChild(resultLink);
-//        div.innerHTML += `<br><strong>Details:</strong> ${result.additionalInfo} <hr>`;
-//        resultsContainer.appendChild(div);
-//    });
-//}
 
 function displayResults(results) {
     let resultsContainer = document.getElementById("resultsContainer");
