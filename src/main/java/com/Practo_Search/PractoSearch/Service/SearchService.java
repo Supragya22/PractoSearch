@@ -97,51 +97,50 @@ public class SearchService {
             }
         }
 
-//        if (results.isEmpty()) {
-//            List<SearchResultDTO> fallbackResults = fallbackToMySQL(keyword);
-//            results.addAll(fallbackResults);
-//
-//
-//            if (!fallbackResults.isEmpty()) {
-//                indexResultsToElasticsearch(fallbackResults);
-//            }
-//        }
+        if (results.isEmpty()) {
+            List<SearchResultDTO> fallbackResults = fallbackToMySQL(keyword);
+            results.addAll(fallbackResults);
 
+
+            if (!fallbackResults.isEmpty()) {
+                indexResultsToElasticsearch(fallbackResults);
+            }
+        }
         return results;
     }
 
-//    private List<SearchResultDTO> fallbackToMySQL(String keyword) {
-//        List<SearchResultDTO> fallbackResults = new ArrayList<>();
-//
-//        List<Doctor> doctors = doctorRepository.searchByDoctorNameOrSpeciality(keyword);
-//        for (Doctor doctor : doctors) {
-//            List<String> specialities = doctor.getDoctorSpecialities()
-//                    .stream()
-//                    .map(ds -> ds.getSpeciality().getName())
-//                    .toList();
-//
-//            fallbackResults.add(new SearchResultDTO(
-//                    "Doctor",
-//                    doctor.getId(),
-//                    doctor.getName(),
-//                    doctor.getExperience() + " years experience",
-//                    specialities
-//            ));
-//        }
-//
-//        List<Practice> practices = practiceRepository.searchByPracticeNameOrCityOrStateOrSpeciality(keyword);
-//        for (Practice practice : practices) {
-//            fallbackResults.add(new SearchResultDTO(
-//                    "Practice",
-//                    practice.getId(),
-//                    practice.getName(),
-//                    practice.getCity() + ", " + practice.getState(),
-//                    null
-//            ));
-//        }
-//
-//        return fallbackResults;
-//    }
+    private List<SearchResultDTO> fallbackToMySQL(String keyword) {
+        List<SearchResultDTO> fallbackResults = new ArrayList<>();
+
+        List<Doctor> doctors = doctorRepository.searchByDoctorNameOrSpeciality(keyword);
+        for (Doctor doctor : doctors) {
+            List<String> specialities = doctor.getDoctorSpecialities()
+                    .stream()
+                    .map(ds -> ds.getSpeciality().getName())
+                    .toList();
+
+            fallbackResults.add(new SearchResultDTO(
+                    "Doctor",
+                    doctor.getId(),
+                    doctor.getName(),
+                    doctor.getExperience() + " years experience",
+                    specialities
+            ));
+        }
+
+        List<Practice> practices = practiceRepository.searchByPracticeNameOrCityOrStateOrSpeciality(keyword);
+        for (Practice practice : practices) {
+            fallbackResults.add(new SearchResultDTO(
+                    "Practice",
+                    practice.getId(),
+                    practice.getName(),
+                    practice.getCity() + ", " + practice.getState(),
+                    null
+            ));
+        }
+
+        return fallbackResults;
+    }
     private void indexResultsToElasticsearch(List<SearchResultDTO> results) {
         List<SearchIndex> searchIndexes = new ArrayList<>();
         for (SearchResultDTO dto : results) {

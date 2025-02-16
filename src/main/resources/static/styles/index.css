@@ -1,25 +1,63 @@
+
+/* General Page Styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background: url('https://blog.practo.com/wp-content/uploads/2017/04/Blog-Hero-Visual.png') center center fixed;
+    background-size: cover;
     text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
 }
 
+/* Practo Logo */
+#practo {
+    display: flex;
+    align-items: center;
+    padding: 20px 30px;
+    width: 20%;
+}
+
+#logo {
+    height: 40px;
+    width: 120px;
+}
+
+/* Main Container */
 .container {
     width: 50%;
     margin: auto;
     padding: 20px;
-    background: white;
+    background: ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    top:-50px;
+    flex: 1; /* Pushes footer to bottom */
 }
 
+h2 {
+    color: #333;
+}
+
+/* Search Bar */
 input {
     width: 70%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 50px 0;
     border: 1px solid #ddd;
     border-radius: 5px;
+    font-size: 16px;
 }
 
 button {
@@ -29,22 +67,76 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
 }
 
 button:hover {
     background: #0056b3;
 }
 
+/* Search Results */
 #resultsContainer {
     margin-top: 20px;
     text-align: left;
 }
 
+/* Individual Result Item */
 .result-item {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
 }
 
+.result-item:hover {
+    transform: scale(1.02);
+}
+
+/* Result Item Image */
+.result-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Circular Image */
+    margin-right: 15px;
+    object-fit: cover; /* Ensures image does not stretch */
+}
+
+/* Result Item Details */
+.result-details {
+    display: flex;
+    flex-direction: column; /* Ensures items are stacked vertically */
+    justify-content: center; /* Centers text vertically */
+    flex: 1; /* Allows text to take the remaining space */
+    min-height: 60px; /* Matches image height for alignment */
+}
+
+.result-details strong {
+    display: block;
+    margin-bottom: 3px;
+}
+
+.result-details p {
+    margin: 3px 0;
+    color: #555;
+    font-size: 14px;
+}
+
+.result-details a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.result-details a:hover {
+    text-decoration: underline;
+}
+
+/* Loading Spinner */
 .loading-spinner {
     margin: 20px auto;
     border: 5px solid #f3f3f3;
@@ -55,38 +147,42 @@ button:hover {
     animation: spin 1s linear infinite;
 }
 
-#logo
-{
-    height: 30px;
-    width: 100px;
-}
-
-#practo
-{
-    display: flex;
-    align-item: center;
-    padding: 20px 30px;
-    width: 20%;
-}
-
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
+/* Footer - Fixed at Bottom */
+footer {
+    background-color: white;
+    color: #555;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.footer-container p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Admin Login Link */
 .admin-link {
-  position: fixed;
-  bottom: 20px;
-  right: 40px;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
 }
 
 .admin-link a {
-  font-size: 14px;
-  color: #007BFF;
-  text-decoration: none;
-  font-weight: bold;
+    font-size: 14px;
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .admin-link a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }

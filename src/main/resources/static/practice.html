@@ -7,15 +7,38 @@
   <link rel="stylesheet" href="styles/practice.css">
 </head>
 <body>
-<div id="practiceDetails">
-  <h2>Doctor Details</h2>
-  <p><strong>Name:</strong> <span id="practiceName"></span></p>
-  <p><strong>Address</strong> <span id="practiceAddress"></span> years</p>
-  <p><strong>City:</strong> <span id="practiceCity"></span></p>
-  <p><strong>State:</strong> <span id="practiceState"></span></p>
-  <p><strong>Website:</strong> <span id="practiceWebsite"></span></p>
+
+<header>
+  <div class="logo">
+    <img src="https://upload.wikimedia.org/wikipedia/en/6/64/Practo_new_logo.png" alt="Logo">
+  </div>
+</header>
+
+<h2 class="page-title">Practice Details</h2>
+
+<div class="container">
+  <div class="practice-info">
+    <img src="https://cdn.pixabay.com/photo/2018/11/13/22/01/avatar-3814081_1280.png" alt="Practice Image" class="practice-img">
+    <div class="practice-details">
+      <p><strong>Name:</strong> <span id="practiceName"></span></p>
+      <p><strong>Address:</strong> <span id="practiceAddress"></span></p>
+      <p><strong>City:</strong> <span id="practiceCity"></span></p>
+      <p><strong>State:</strong> <span id="practiceState"></span></p>
+      <p><strong>Website:</strong> <a href="#" id="practiceWebsite" target="_blank"></a></p>
+    </div>
+  </div>
+</div>
+
+<!-- Centered Back Button -->
+<div class="back-button-container">
   <button id="backToSearch">Back to Search</button>
 </div>
+
+<footer>
+  <div class="footer-container">
+    <p>&copy; 2025 Practo Clone. All rights reserved.</p>
+  </div>
+</footer>
 
 <script src="scripts/practice.js"></script>
 </body>

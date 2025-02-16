@@ -61,11 +61,14 @@ function displayResults(results) {
             console.log("TARGET URL", targetUrl);
 
         div.innerHTML = `
-            <strong>Name:</strong> <a href="${targetUrl}">${result.name}</a> <br>
-            ${specialitiesText}
-            <strong>Details:</strong> ${result.additionalInfo} <br>
-            <hr>
+            <img src="https://cdn.pixabay.com/photo/2018/11/13/22/01/avatar-3814081_1280.png" alt="Doctor Image">
+            <div class="result-details">
+                <strong>Name:</strong> <a href="${targetUrl}">${result.name}</a>
+                ${specialitiesText ? `<p><strong>Specialities:</strong> ${result.specialities.join(", ")}</p>` : ""}
+                <p><strong>Details:</strong> ${result.additionalInfo}</p>
+            </div>
         `;
+
 
         resultsContainer.appendChild(div);
     });

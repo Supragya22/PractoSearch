@@ -1,67 +1,93 @@
-/* General Styles */
-body {
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
+}
+
+/* Body Styling */
+body {
     background-color: #f4f4f9;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
+    justify-content: center;
+}
+
+/* Header */
+header {
+    width: 100%;
+    background-color: white;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo img {
+    height: 40px;
 }
 
 /* Form Container */
 .form-container {
     background: white;
-    padding: 20px;
+    padding: 25px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
+    width: 400px;
+    margin: 20px 0;
 }
 
 /* Form Heading */
 h1 {
     text-align: center;
-    font-size: 20px;
-    margin-bottom: 15px;
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #1a73e8;
 }
 
 /* Labels */
 label {
     font-weight: bold;
     display: block;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 /* Inputs */
 input[type="text"],
 input[type="number"] {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
     box-sizing: border-box;
+    font-size: 14px;
 }
 
 /* Checkboxes Container */
-#specialityContainer, #practiceContainer {
+#specialityContainer,
+#practiceContainer {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 8px;
     margin-top: 5px;
     background: #f9f9f9;
     padding: 8px;
-    border-radius: 4px;
+    border-radius: 5px;
     border: 1px solid #ccc;
-    max-height: 120px; /* Limit height */
-    overflow-y: auto;  /* Enable scrolling if needed */
+    max-height: 120px;
+    overflow-y: auto;
 }
 
 /* Individual Checkbox Items */
-#specialityContainer div, #practiceContainer div {
+#specialityContainer div,
+#practiceContainer div {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
     width: 100%;
 }
 
@@ -74,12 +100,12 @@ input[type="checkbox"] {
 /* Submit Button */
 button {
     width: 100%;
-    padding: 10px;
-    margin-top: 15px;
-    background: #007BFF;
+    padding: 12px;
+    margin-top: 20px;
+    background: #1a73e8;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
@@ -87,13 +113,30 @@ button {
 }
 
 button:hover {
-    background: #0056b3;
+    background: #135abc;
 }
 
 /* Response Message */
 #responseMessage {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 14px;
     font-weight: bold;
+    color: #333;
+}
+
+/* Footer */
+footer {
+    background-color: white;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    margin-top: auto;
+    border-top: 1px solid #ddd;
+    font-size: 14px;
+    color: #555;
+}
+
+.footer-container p {
+    margin: 0;
 }
