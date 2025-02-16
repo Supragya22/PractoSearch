@@ -20,4 +20,5 @@ public class SearchIndex {
     private String name;
     private String additionalInfo;
     private List<String> specialities;
+
 }

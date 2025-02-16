@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Form</title>
+    <link rel="stylesheet" href="styles/doctor-form.css">
+</head>
+<body>
+<div class="form-container">
+    <h1>Save or Modify Doctor</h1>
+    <form id="doctorForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="experience">Experience (Years):</label>
+        <input type="number" id="experience" required>
+
+        <label for="qualifications">Qualifications:</label>
+        <input type="text" id="qualifications" required>
+
+        <label for="specialityIds">Specialities (comma separated IDs):</label>
+        <input type="text" id="specialityIds" required>
+
+        <label for="practiceIds">Practices (comma separated IDs):</label>
+        <input type="text" id="practiceIds" required>
+
+        <button type="submit">Save Doctor</button>
+    </form>
+
+    <div id="responseMessage"></div>
+</div>
+
+<script src="scripts/doctor-form.js"></script>
+</body>
+</html>

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/practices")
 @CrossOrigin(origins = "*") // Allow cross-origin requests
@@ -15,6 +17,14 @@ public class PracticeController {
 
     @Autowired
     private PracticeService practiceService;
+
+    // Get all doctors
+    @GetMapping
+    public List<Practice> getAll() {
+        return practiceService.getAllPractices();
+    }
+
+
 
     // API to fetch Practice details by ID
     @GetMapping("/{id}")

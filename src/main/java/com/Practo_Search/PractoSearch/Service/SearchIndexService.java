@@ -31,24 +31,6 @@ public class SearchIndexService {
 
         searchIndexRepository.save(searchIndex);
     }
-//public void indexDoctor(Doctor doctor) {
-//    SearchIndex searchIndex = new SearchIndex();
-//    searchIndex.setId("D-" + doctor.getId());
-//    searchIndex.setType("Doctor");
-//    searchIndex.setName(doctor.getName());
-//    searchIndex.setAdditionalInfo(doctor.getExperience() + " years experience");
-//
-//    // Fetch Specialities via Doctor_Speciality mapping
-//    List<String> specialities = doctor.getDoctorSpecialities() != null
-//            ? doctor.getDoctorSpecialities().stream()
-//            .map(ds -> ds.getSpeciality().getName()) // Extract Speciality names
-//            .collect(Collectors.toList())
-//            : Collections.emptyList();
-//
-//    searchIndex.setSpecialities(specialities);
-//
-//    searchIndexRepository.save(searchIndex);
-//}
 
 
     public void indexPractice(Practice practice) {
@@ -62,25 +44,6 @@ public class SearchIndexService {
                 : Collections.emptyList());
         searchIndexRepository.save(searchIndex);
     }
-
-//    public void indexPractice(PracticeIdDTO practice) {
-//        SearchIndex searchIndex = new SearchIndex();
-//        searchIndex.setId("P-" + practice.getId());
-//        searchIndex.setType("Practice");
-//        searchIndex.setName(practice.getName());
-//        searchIndex.setAdditionalInfo(practice.getCity() + ", " + practice.getState());
-//
-//        // Fetch Specialities via Practice_Speciality mapping
-//        List<String> specialities = practice.getPracticeSpecialities() != null
-//                ? practice.getPracticeSpecialities().stream()
-//                .map(ps -> ps.getSpeciality().getName()) // Extract Speciality names
-//                .collect(Collectors.toList())
-//                : Collections.emptyList();
-//
-//        searchIndex.setSpecialities(specialities);
-//
-//        searchIndexRepository.save(searchIndex);
-//    }
 
     public void indexSpeciality(Speciality speciality) {
         SearchIndex searchIndex = new SearchIndex();

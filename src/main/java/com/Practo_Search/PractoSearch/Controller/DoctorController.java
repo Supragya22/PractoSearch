@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/doctors")
 @CrossOrigin(origins = "*") // Allow cross-origin requests
@@ -15,6 +17,13 @@ public class DoctorController {
 
     @Autowired
     private DoctorService doctorService;
+
+    // Get all doctors
+    @GetMapping
+    public List<Doctor> getAllDoctors() {
+        List<Doctor> doctors=doctorService.getAllDoctors();
+        return doctorService.getAllDoctors();
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<DoctorDTO> getDoctorById(@PathVariable int id) {

@@ -71,19 +71,11 @@ public class PracticeService {
     @Autowired
     private SearchIndexService searchIndexService; // Manages Elasticsearch syncing
 
-    // Fetch practice details from MySQL
-//    public PracticeDTO getPracticeById(int id) {
-//        Optional<Practice> practice = practiceRepository.findById(id);
-//        return practice.map(p -> new PracticeDTO(
-//                p.getName(),
-//                p.getAddress(),
-//                p.getState(),
-//                p.getCity(),
-//                p.getWebsite(),
-//                p.getDoctors()!= null ? p.getDoctors().stream().map(Doctor::getName).toList() : Collections.emptyList(),
-//                p.getSpecialities()!= null ? p.getSpecialities().stream().map(Speciality::getName).toList() : Collections.emptyList()
-//        )).orElse(null);
-//    }
+
+    // Get all practices
+    public List<Practice> getAllPractices() {
+        return practiceRepository.findAll();
+    }
 
     public PracticeDTO getPracticeById(int id) {
         Optional<Practice> practice = practiceRepository.findById(id);

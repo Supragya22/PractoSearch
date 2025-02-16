@@ -1,0 +1,55 @@
+/* Styling for Admin Dashboard page */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-container {
+  text-align: center;
+  padding: 40px;
+  background-color: white;
+  width: 100%;
+  height: 100vh;
+}
+
+h2 {
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+.options-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.option {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

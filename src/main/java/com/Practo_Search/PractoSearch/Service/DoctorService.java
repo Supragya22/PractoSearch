@@ -64,6 +64,10 @@ public class DoctorService {
     private SearchIndexService searchIndexService; // Responsible for syncing Elasticsearch
 
 
+    // Get all doctors
+    public List<Doctor> getAllDoctors() {
+        return doctorRepository.findAll();
+    }
     public DoctorDTO getDoctorById(int id) {
         Optional<Doctor> doctor = doctorRepository.findById(id);
 
@@ -83,12 +87,6 @@ public class DoctorService {
                         : Collections.emptyList()
         )).orElse(null);}
 
-    // Save Doctor in MySQL and index in Elasticsearch
-//    public DoctorDTO saveDoctor(Doctor doctor) {
-//        Doctor savedDoctor = doctorRepository.save(doctor);
-//        searchIndexService.indexDoctor(savedDoctor); // Sync with Elasticsearch
-//        return new DoctorDTO(savedDoctor);
-//    }
 
     public DoctorIdDTO saveDoctor(DoctorIdDTO doctorDTO) {
         // Convert DoctorIdDTO to Doctor entity
