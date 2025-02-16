@@ -6,7 +6,9 @@ import com.Practo_Search.PractoSearch.model.Speciality;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.relational.core.sql.In;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,30 +16,29 @@ import java.util.stream.Collectors;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DoctorDTO {
+public class DoctorIdDTO {
     private String name;
     private int experience;
     private String qualifications;
-    private List<String> specialities;
-    private List<String> practices;
+    private List<Integer> specialityIds;
+    private List<Integer> practiceIds;
 
-    public DoctorDTO(Doctor doctor) {
+    public DoctorIdDTO(Doctor doctor) {
         this.name = doctor.getName();
         this.experience = doctor.getExperience();
         this.qualifications = doctor.getQualifications();
-
-        // Fetch specialities from Doctor_Speciality entity
-        this.specialities = doctor.getDoctorSpecialities() != null
+        this.specialityIds = doctor.getDoctorSpecialities() != null
                 ? doctor.getDoctorSpecialities().stream()
-                .map(ds -> ds.getSpeciality().getName()) // Extract Speciality name
+                .map(ds -> ds.getSpeciality().getId())
                 .collect(Collectors.toList())
-                : List.of();
-
-        // Fetch practices from Doctor_Practice entity
-        this.practices = doctor.getDoctorPractices() != null
+                : new ArrayList<>(); // Return an empty list if doctorSpecialities is null
+        this.practiceIds = doctor.getDoctorPractices() != null
                 ? doctor.getDoctorPractices().stream()
-                .map(dp -> dp.getPractice().getName()) // Extract Practice name
+                .map(dp -> dp.getPractice().getId())
                 .collect(Collectors.toList())
-                : List.of();
+                : new ArrayList<>(); // Return an empty list if doctorPractices is null
     }
+
+
+
 }

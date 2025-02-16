@@ -27,19 +27,23 @@ public class Doctor {
 
     private String qualifications;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(name="doctor_specialities",
     joinColumns = @JoinColumn(name = "doctor_id"),
     inverseJoinColumns = @JoinColumn(name = "speciality_id"))
     @JsonIgnore
     private List<Speciality> specialities;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(name="doctor_practices",
             joinColumns = @JoinColumn(name = "doctor_id"),
             inverseJoinColumns = @JoinColumn(name = "practice_id"))
     @JsonIgnore
     private List<Practice> practices;
 
+    @OneToMany(mappedBy = "doctor")
+    private List<Doctor_Speciality> doctorSpecialities;
 
+    @OneToMany(mappedBy = "doctor")
+    private List<Doctor_Practice> doctorPractices;
 }

@@ -1,6 +1,7 @@
 package com.Practo_Search.PractoSearch.Controller;
 
 import com.Practo_Search.PractoSearch.DTO.DoctorDTO;
+import com.Practo_Search.PractoSearch.DTO.DoctorIdDTO;
 import com.Practo_Search.PractoSearch.Service.DoctorService;
 import com.Practo_Search.PractoSearch.model.Doctor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +27,17 @@ public class DoctorController {
     }
 
     @PostMapping
-    public ResponseEntity<Doctor> saveDoctor(@RequestBody Doctor doctor) {
-        Doctor savedDoctor = doctorService.saveDoctor(doctor);
+    public ResponseEntity<DoctorIdDTO> saveDoctor(@RequestBody DoctorIdDTO doctor) {
+
+        System.out.println("DOCTOR RESPONSE-----"+ doctor);
+        DoctorIdDTO savedDoctor = doctorService.saveDoctor(doctor);
         return ResponseEntity.ok(savedDoctor);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Doctor> updateDoctor(@PathVariable int id, @RequestBody Doctor updatedDoctor) {
-        Doctor updated = doctorService.updateDoctor(id, updatedDoctor);
+    public ResponseEntity<DoctorIdDTO> updateDoctor(@PathVariable int id, @RequestBody DoctorIdDTO updatedDoctor) {
+        System.out.println("DOCTOR RESPONSE-----"+ updatedDoctor);
+        DoctorIdDTO updated = doctorService.updateDoctor(id, updatedDoctor);
         return updated != null ? ResponseEntity.ok(updated) : ResponseEntity.notFound().build();
     }
 

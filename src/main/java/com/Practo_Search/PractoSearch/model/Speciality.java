@@ -22,9 +22,15 @@ public class Speciality {
     @JsonIgnore
     private List<Doctor> doctors;
 
-//    @ManyToMany(mappedBy = "specialities")
-//    private List<Practice> practices;
+    @ManyToMany(mappedBy = "specialities")
+    private List<Practice> practices;
 
+
+    @OneToMany(mappedBy = "speciality")
+    private List<Doctor_Speciality> doctorSpecialities;
+
+    @OneToMany(mappedBy = "speciality")
+    private List<Practice_Speciality> practiceSpecialities;
 
 }
 

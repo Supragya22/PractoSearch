@@ -115,9 +115,9 @@ public class SearchService {
 
         List<Doctor> doctors = doctorRepository.searchByDoctorNameOrSpeciality(keyword);
         for (Doctor doctor : doctors) {
-            List<String> specialities = doctor.getSpecialities()
+            List<String> specialities = doctor.getDoctorSpecialities()
                     .stream()
-                    .map(Speciality::getName)
+                    .map(ds -> ds.getSpeciality().getName())
                     .toList();
 
             fallbackResults.add(new SearchResultDTO(

@@ -1,10 +1,14 @@
 package com.Practo_Search.PractoSearch.model;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @Table(name = "practice_specialities")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Practice_Speciality {
 
     @Id

@@ -1,6 +1,7 @@
 package com.Practo_Search.PractoSearch.Controller;
 
 import com.Practo_Search.PractoSearch.DTO.PracticeDTO;
+import com.Practo_Search.PractoSearch.DTO.PracticeIdDTO;
 import com.Practo_Search.PractoSearch.model.Practice;
 import com.Practo_Search.PractoSearch.Service.PracticeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +27,14 @@ public class PracticeController {
         }
     }
     @PostMapping
-    public ResponseEntity<Practice> savePractice(@RequestBody Practice practice) {
-        Practice savedPractice = practiceService.savePractice(practice);
+    public ResponseEntity<PracticeIdDTO> savePractice(@RequestBody PracticeIdDTO practice) {
+        PracticeIdDTO savedPractice = practiceService.savePractice(practice);
         return ResponseEntity.ok(savedPractice);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Practice> updatePractice(@PathVariable int id, @RequestBody Practice updatedPractice) {
-        Practice updated = practiceService.updatePractice(id, updatedPractice);
+    public ResponseEntity<PracticeIdDTO> updatePractice(@PathVariable int id, @RequestBody PracticeIdDTO updatedPractice) {
+        PracticeIdDTO updated = practiceService.updatePractice(id, updatedPractice);
         return updated != null ? ResponseEntity.ok(updated) : ResponseEntity.notFound().build();
     }
 

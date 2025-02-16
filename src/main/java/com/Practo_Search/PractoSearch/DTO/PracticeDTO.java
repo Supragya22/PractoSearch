@@ -19,4 +19,6 @@ public class PracticeDTO {
     private String website;
     private List<String> doctors;
     private List<String> specialities;
+
+
 }

@@ -35,4 +35,11 @@ public class Practice {
             inverseJoinColumns = @JoinColumn(name = "speciality_id"))
     @JsonIgnore
     private List<Speciality> specialities;
+
+    @OneToMany(mappedBy = "practice")
+    private List<Doctor_Practice> doctorPractices;
+
+    @OneToMany(mappedBy = "practice")
+
+    private List<Practice_Speciality> practiceSpecialities;
 }
