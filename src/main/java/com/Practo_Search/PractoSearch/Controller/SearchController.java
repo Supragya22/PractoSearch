@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.hibernate.sql.results.LoadingLogger.LOGGER;
+
 @RestController
 @RequestMapping("/api/search")
 @CrossOrigin(origins = "*") // Allow cross-origin requests
@@ -18,6 +20,9 @@ public class SearchController {
 
     @GetMapping
     public ResponseEntity<List<SearchResultDTO>> search(@RequestParam String keyword) {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
         List<SearchResultDTO> results = searchService.universalSearch(keyword);
         return ResponseEntity.ok(results);
     }

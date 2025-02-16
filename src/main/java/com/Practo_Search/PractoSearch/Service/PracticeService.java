@@ -41,10 +41,13 @@ package com.Practo_Search.PractoSearch.Service;
 
 import com.Practo_Search.PractoSearch.DTO.PracticeDTO;
 import com.Practo_Search.PractoSearch.Repository.PracticeRepository;
+import com.Practo_Search.PractoSearch.model.Doctor;
 import com.Practo_Search.PractoSearch.model.Practice;
+import com.Practo_Search.PractoSearch.model.Speciality;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Optional;
 
 @Service
@@ -64,7 +67,9 @@ public class PracticeService {
                 p.getAddress(),
                 p.getState(),
                 p.getCity(),
-                p.getWebsite()
+                p.getWebsite(),
+                p.getDoctors()!= null ? p.getDoctors().stream().map(Doctor::getName).toList() : Collections.emptyList(),
+                p.getSpecialities()!= null ? p.getSpecialities().stream().map(Speciality::getName).toList() : Collections.emptyList()
         )).orElse(null);
     }
 
@@ -85,6 +90,8 @@ public class PracticeService {
             existingPractice.setState(updatedPractice.getState());
             existingPractice.setCity(updatedPractice.getCity());
             existingPractice.setWebsite(updatedPractice.getWebsite());
+            existingPractice.setDoctors(updatedPractice.getDoctors());
+            existingPractice.setSpecialities(updatedPractice.getSpecialities());
 
             Practice savedPractice = practiceRepository.save(existingPractice);
             searchIndexService.indexPractice(savedPractice); // Update Elasticsearch

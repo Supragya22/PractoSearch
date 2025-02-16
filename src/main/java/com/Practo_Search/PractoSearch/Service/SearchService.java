@@ -81,7 +81,7 @@ public class SearchService {
     public List<SearchResultDTO> universalSearch(String keyword) {
         List<SearchResultDTO> results = new ArrayList<>();
 
-        // ✅ Step 1: Try searching in Elasticsearch first
+
         List<SearchIndex> esResults = searchIndexRepository.findByNameContainingIgnoreCase(keyword);
         for (SearchIndex result : esResults) {
             Integer entityId = extractEntityId(result.getId());
@@ -97,12 +97,11 @@ public class SearchService {
             }
         }
 
-        // ✅ Step 2: If Elasticsearch is empty, fallback to MySQL
         if (results.isEmpty()) {
             List<SearchResultDTO> fallbackResults = fallbackToMySQL(keyword);
             results.addAll(fallbackResults);
 
-            // ✅ Step 3: Sync MySQL results to Elasticsearch for future searches
+
             if (!fallbackResults.isEmpty()) {
                 indexResultsToElasticsearch(fallbackResults);
             }
@@ -114,7 +113,6 @@ public class SearchService {
     private List<SearchResultDTO> fallbackToMySQL(String keyword) {
         List<SearchResultDTO> fallbackResults = new ArrayList<>();
 
-        // 🔍 Search in MySQL for Doctors
         List<Doctor> doctors = doctorRepository.searchByDoctorNameOrSpeciality(keyword);
         for (Doctor doctor : doctors) {
             List<String> specialities = doctor.getSpecialities()
@@ -131,7 +129,6 @@ public class SearchService {
             ));
         }
 
-        // 🔍 Search in MySQL for Practices
         List<Practice> practices = practiceRepository.searchByPracticeNameOrCityOrStateOrSpeciality(keyword);
         for (Practice practice : practices) {
             fallbackResults.add(new SearchResultDTO(
@@ -145,8 +142,6 @@ public class SearchService {
 
         return fallbackResults;
     }
-
-    // ✅ Sync new MySQL results to Elasticsearch
     private void indexResultsToElasticsearch(List<SearchResultDTO> results) {
         List<SearchIndex> searchIndexes = new ArrayList<>();
         for (SearchResultDTO dto : results) {
@@ -161,7 +156,7 @@ public class SearchService {
             ));
         }
 
-        searchIndexRepository.saveAll(searchIndexes); // Bulk insert to Elasticsearch
+        searchIndexRepository.saveAll(searchIndexes);
     }
 
     private Integer extractEntityId(String id) {

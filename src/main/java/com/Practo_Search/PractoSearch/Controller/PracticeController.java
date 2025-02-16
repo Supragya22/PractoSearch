@@ -25,4 +25,22 @@ public class PracticeController {
             return ResponseEntity.notFound().build();
         }
     }
+    @PostMapping
+    public ResponseEntity<Practice> savePractice(@RequestBody Practice practice) {
+        Practice savedPractice = practiceService.savePractice(practice);
+        return ResponseEntity.ok(savedPractice);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Practice> updatePractice(@PathVariable int id, @RequestBody Practice updatedPractice) {
+        Practice updated = practiceService.updatePractice(id, updatedPractice);
+        return updated != null ? ResponseEntity.ok(updated) : ResponseEntity.notFound().build();
+    }
+
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deletePractice(@PathVariable int id) {
+//        practiceService.deletePractice(id);
+//        return ResponseEntity.noContent().build();
+//    }
+
 }

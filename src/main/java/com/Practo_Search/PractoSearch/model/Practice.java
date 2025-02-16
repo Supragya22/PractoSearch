@@ -1,5 +1,6 @@
 package com.Practo_Search.PractoSearch.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,11 +26,13 @@ public class Practice {
     private String website;
 
     @ManyToMany(mappedBy = "practices")
+    @JsonIgnore
     private List<Doctor> doctors;
 
     @ManyToMany
     @JoinTable(name="practice_specialities",
             joinColumns = @JoinColumn(name = "practice_id"),
             inverseJoinColumns = @JoinColumn(name = "speciality_id"))
+    @JsonIgnore
     private List<Speciality> specialities;
 }
