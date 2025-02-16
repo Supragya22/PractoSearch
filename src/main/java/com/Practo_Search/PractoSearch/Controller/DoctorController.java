@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/doctors")
-@CrossOrigin(origins = "*") // Allow cross-origin requests
+@CrossOrigin(origins = "http://localhost:3000") // Allow cross-origin requests
 public class DoctorController {
 
     @Autowired

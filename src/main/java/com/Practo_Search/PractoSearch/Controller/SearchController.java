@@ -12,7 +12,7 @@ import static org.hibernate.sql.results.LoadingLogger.LOGGER;
 
 @RestController
 @RequestMapping("/api/search")
-@CrossOrigin(origins = "*") // Allow cross-origin requests
+@CrossOrigin(origins = "http://localhost:3000") // Allow cross-origin requests
 public class SearchController {
 
     @Autowired

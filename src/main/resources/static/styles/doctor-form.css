@@ -1,54 +1,99 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
 }
 
+/* Form Container */
 .form-container {
-    max-width: 600px;
-    margin: 50px auto;
-    background-color: #fff;
+    background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
 }
 
+/* Form Heading */
 h1 {
     text-align: center;
-    color: #333;
+    font-size: 20px;
+    margin-bottom: 15px;
 }
 
+/* Labels */
 label {
     font-weight: bold;
-    margin-top: 10px;
     display: block;
+    margin-top: 10px;
 }
 
-input {
+/* Inputs */
+input[type="text"],
+input[type="number"] {
     width: 100%;
-    padding: 10px;
-    margin: 5px 0;
+    padding: 8px;
+    margin-top: 5px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-button {
+/* Checkboxes Container */
+#specialityContainer, #practiceContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 5px;
+    background: #f9f9f9;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    max-height: 120px; /* Limit height */
+    overflow-y: auto;  /* Enable scrolling if needed */
+}
+
+/* Individual Checkbox Items */
+#specialityContainer div, #practiceContainer div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
+}
+
+/* Checkbox Styling */
+input[type="checkbox"] {
+    transform: scale(1.1);
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #45a049;
+/* Submit Button */
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease;
 }
 
+button:hover {
+    background: #0056b3;
+}
+
+/* Response Message */
 #responseMessage {
-    margin-top: 20px;
     text-align: center;
-    font-size: 16px;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
 }

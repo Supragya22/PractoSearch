@@ -36,9 +36,11 @@ public class Practice {
     @JsonIgnore
     private List<Speciality> specialities;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "practice")
     private List<Doctor_Practice> doctorPractices;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "practice")
 
     private List<Practice_Speciality> practiceSpecialities;

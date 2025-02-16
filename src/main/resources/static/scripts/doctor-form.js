@@ -1,77 +1,78 @@
-// API endpoint (replace with your actual API URL)
-const API_URL = 'http://localhost:8080/api/doctors';
-
-// Handle form submission for saving or modifying a doctor
-document.getElementById('doctorForm').addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    const doctorData = {
-        name: document.getElementById('name').value,
-        experience: parseInt(document.getElementById('experience').value),
-        qualifications: document.getElementById('qualifications').value,
-        specialityIds: document.getElementById('specialityIds').value.split(',').map(id => parseInt(id.trim())),
-        practiceIds: document.getElementById('practiceIds').value.split(',').map(id => parseInt(id.trim()))
-    };
-
-    // Check if we are saving a new doctor or modifying an existing one
-    const doctorId = getUrlParameter('id');  // To get the doctor's ID from URL, if modifying
-
-    if (doctorId) {
-        // If doctorId exists, we modify the doctor
-        updateDoctor(doctorId, doctorData);
-    } else {
-        // If no doctorId, we save a new doctor
-        saveDoctor(doctorData);
-    }
+document.addEventListener("DOMContentLoaded", async function () {
+    await populateCheckboxes("http://localhost:8080/api/specialities", "specialityContainer");
+    await populateCheckboxes("http://localhost:8080/api/practices", "practiceContainer");
 });
 
-// Function to save a new doctor
-function saveDoctor(doctorData) {
-    fetch(API_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(doctorData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        displayResponse('Doctor saved successfully!', 'success');
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        displayResponse('Error saving doctor.', 'error');
-    });
+async function populateCheckboxes(apiUrl, containerId) {
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error(`Error fetching data: ${response.status}`);
+
+        const data = await response.json();
+        const container = document.getElementById(containerId);
+        container.innerHTML = ""; // Clear previous content if any
+
+        data.forEach(item => {
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.value = item.id;  // Assuming response has {id, name}
+            checkbox.id = `${containerId}_${item.id}`;
+
+            const label = document.createElement("label");
+            label.htmlFor = checkbox.id;
+            label.textContent = item.name;
+
+            const div = document.createElement("div");
+            div.appendChild(checkbox);
+            div.appendChild(label);
+
+            container.appendChild(div);
+        });
+
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
 }
 
-// Function to update an existing doctor
-function updateDoctor(id, doctorData) {
-    fetch(`${API_URL}/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(doctorData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        displayResponse('Doctor updated successfully!', 'success');
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        displayResponse('Error updating doctor.', 'error');
-    });
-}
+// Handle form submission
+document.getElementById("doctorForm").addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-// Utility function to display the response message
-function displayResponse(message, status) {
-    const responseElement = document.getElementById('responseMessage');
-    responseElement.textContent = message;
-    responseElement.style.color = status === 'success' ? 'green' : 'red';
-}
+    const name = document.getElementById("name").value;
+    const experience = document.getElementById("experience").value;
+    const qualifications = document.getElementById("qualifications").value;
 
-// Function to get the URL parameter (for modifying a doctor)
-function getUrlParameter(name) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(name);
-}
+    // Get selected checkboxes for specialities & practices
+    const specialityIds = Array.from(document.querySelectorAll("#specialityContainer input:checked"))
+                              .map(checkbox => checkbox.value);
+
+    const practiceIds = Array.from(document.querySelectorAll("#practiceContainer input:checked"))
+                             .map(checkbox => checkbox.value);
+
+    const doctorData = {
+        name,
+        experience,
+        qualifications,
+        specialityIds,
+        practiceIds
+    };
+
+    console.log("Submitting Doctor Data:", doctorData);
+
+    try {
+        const response = await fetch("http://localhost:8080/api/doctors", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(doctorData)
+        });
+
+        if (!response.ok) throw new Error(`Error: ${response.status}`);
+
+        document.getElementById("responseMessage").textContent = "Doctor saved successfully!";
+    } catch (error) {
+        console.error("Error saving doctor:", error);
+        document.getElementById("responseMessage").textContent = "Error saving doctor.";
+    }
+});

@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="form-container">
-    <h1>Save or Modify Doctor</h1>
+    <h1>Doctor</h1>
     <form id="doctorForm">
         <label for="name">Name:</label>
         <input type="text" id="name" required>
@@ -19,11 +19,17 @@
         <label for="qualifications">Qualifications:</label>
         <input type="text" id="qualifications" required>
 
-        <label for="specialityIds">Specialities (comma separated IDs):</label>
-        <input type="text" id="specialityIds" required>
+        <!-- Specialities Section -->
+        <label>Specialities:</label>
+        <div id="specialityContainer">
+            <!-- Checkboxes will be added dynamically here -->
+        </div>
 
-        <label for="practiceIds">Practices (comma separated IDs):</label>
-        <input type="text" id="practiceIds" required>
+        <!-- Practices Section -->
+        <label>Practices:</label>
+        <div id="practiceContainer">
+            <!-- Checkboxes will be added dynamically here -->
+        </div>
 
         <button type="submit">Save Doctor</button>
     </form>
