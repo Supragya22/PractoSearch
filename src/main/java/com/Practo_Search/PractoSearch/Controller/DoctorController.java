@@ -38,14 +38,12 @@ public class DoctorController {
     @PostMapping
     public ResponseEntity<DoctorIdDTO> saveDoctor(@RequestBody DoctorIdDTO doctor) {
 
-        System.out.println("DOCTOR RESPONSE-----"+ doctor);
         DoctorIdDTO savedDoctor = doctorService.saveDoctor(doctor);
         return ResponseEntity.ok(savedDoctor);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<DoctorIdDTO> updateDoctor(@PathVariable int id, @RequestBody DoctorIdDTO updatedDoctor) {
-        System.out.println("DOCTOR RESPONSE-----"+ updatedDoctor);
         DoctorIdDTO updated = doctorService.updateDoctor(id, updatedDoctor);
         return updated != null ? ResponseEntity.ok(updated) : ResponseEntity.notFound().build();
     }
